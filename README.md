@@ -1,52 +1,30 @@
 # Fract'ol
 
+![Fract'ol hero](assets/hero.svg)
+
 An interactive fractal explorer written in C for the 42 curriculum.
 
-This project is about turning abstract math into something you can drive with your hands. Fract'ol lets you move through fractal space in real time, zoom straight toward the mouse cursor, switch palettes, test different Julia constants, and watch tiny numeric changes explode into completely different shapes.
+Fract'ol is where complex-number math stops being abstract and starts feeling alive. You launch a fractal, grab the mouse wheel, dive toward the edge of the set, shift the viewport, change the mood with new palettes, and watch simple formulas unfold into strange, detailed worlds.
 
-It is both a graphics project and a curiosity project: part rendering engine, part mathematical playground.
+This repository is meant to feel like the project itself: clear, curious, and fun to explore.
 
-## At a Glance
+## What You Can Do Here
 
-- 4 fractal types: Mandelbrot, Julia, Burning Ship, Tricorn
-- Cursor-centered zoom
-- Arrow-key panning
-- Multiple color palettes
-- Iteration depth controls
-- Autoplay mode for ambient exploration
-- Clean source split by responsibility
+- Explore 4 fractal types
+- Zoom directly toward the mouse cursor
+- Pan through the complex plane with the keyboard
+- Change the visual mood with multiple color palettes
+- Increase iteration depth for more detail
+- Launch an autoplay mode for ambient movement
 
-## What Makes This Version Fun
-
-- You are not locked into one static render. The project is built for exploration.
-- Julia values are easy to try, which makes the project feel different every time you run it.
-- Burning Ship and Tricorn give the repo more personality than a mandatory-only submission.
-- The controls are simple enough to demo quickly, but rich enough to keep exploring.
-
-## First Minute Demo
-
-If someone opens the repo and wants to feel the project immediately, this is the fastest route:
-
-```bash
-make
-./fractol mandelbrot
-```
-
-Then try:
-
-1. Zoom into the edge of the Mandelbrot set with the mouse wheel.
-2. Pan with the arrow keys.
-3. Press `C` a few times to shift the mood of the image.
-4. Press `+` to increase detail.
-5. Launch a Julia set and compare how different it feels from Mandelbrot.
-
-## Build
+## Quick Start
 
 ### macOS
 
 ```bash
 brew install cmake glfw
 make
+./fractol mandelbrot
 ```
 
 ### Linux
@@ -54,20 +32,104 @@ make
 ```bash
 sudo apt-get install cmake libglfw3-dev libxcursor-dev libxinerama-dev libxi-dev
 make
+./fractol mandelbrot
 ```
 
-`MLX42` is bundled inside this repository, so there is no extra graphics-library clone step.
+`MLX42` is already bundled inside this repository, so there is no extra graphics-library clone step.
 
-## Run
+## First Minute Demo
+
+If you want to feel the project immediately, do this:
+
+1. Run `./fractol mandelbrot`
+2. Zoom toward the boundary with the mouse wheel
+3. Pan with the arrow keys
+4. Press `C` to switch palettes
+5. Press `+` to increase detail
+6. Launch a Julia set and compare the shape language
+
+## Exploration Routes
+
+### Route 1: Classic
 
 ```bash
 ./fractol mandelbrot
-./fractol julia -0.4 0.6
+```
+
+Start wide, then zoom toward the border where the interesting structure lives.
+
+### Route 2: Experimental
+
+```bash
+./fractol julia -0.7269 0.1889
+```
+
+Try several Julia constants back-to-back and see how sensitive the geometry becomes.
+
+### Route 3: Dramatic
+
+```bash
 ./fractol burning_ship
+```
+
+Use slower zoom and palette changes. This one gets sharper and more aggressive the deeper you go.
+
+### Route 4: Ambient
+
+```bash
 ./fractol tricorn
 ```
 
-If invalid arguments are provided, the program prints usage instructions and exits cleanly.
+Then press `A` to hand control to autoplay and let the project become a moving demo.
+
+## How It Works
+
+![How Fract'ol works](assets/how-it-works.svg)
+
+Every frame follows the same core idea:
+
+1. Map each screen pixel to a point in the complex plane
+2. Run a fractal formula repeatedly
+3. Check whether the value escapes beyond a radius
+4. Count how long that takes
+5. Convert that count into color
+
+That escape-time approach is what turns pure math into visible structure.
+
+## Fractals Included
+
+### Mandelbrot
+
+The classic escape-time fractal based on:
+
+```text
+z = z^2 + c
+```
+
+This implementation also includes a cardioid and period-2 bulb shortcut to skip work on points already known to remain bounded.
+
+### Julia
+
+Julia sets fix the constant and let the starting point vary. Small parameter changes can create radically different visual structures.
+
+Suggested values:
+
+```bash
+./fractol julia -0.4 0.6
+./fractol julia 0.285 0.01
+./fractol julia -0.70176 -0.3842
+./fractol julia -0.835 -0.2321
+./fractol julia -0.7269 0.1889
+./fractol julia 0.0 -0.8
+```
+
+### Burning Ship
+
+A sharper fractal built from absolute values before squaring. It produces harsh, flame-like shapes and gives the project a very different energy.
+
+### Tricorn
+
+A Mandelbrot-relative based on the complex conjugate. It has a colder, more mirrored symmetry and gives the bonus part real identity.
 
 ## Controls
 
@@ -83,87 +145,19 @@ If invalid arguments are provided, the program prints usage instructions and exi
 | `I` | Print current fractal information |
 | `ESC` | Exit the program |
 
-## Fractals Included
-
-### Mandelbrot
-
-The classic escape-time fractal. Each pixel is mapped to the complex plane, then tested through repeated iteration of:
-
-```text
-z = z^2 + c
-```
-
-This implementation also includes a cardioid and period-2 bulb shortcut to skip work on points that are known to remain bounded.
-
-### Julia
-
-Julia sets fix the constant and let the starting point vary. That makes them perfect for experimentation: small parameter changes can produce entirely different structures.
-
-Suggested values:
-
-```bash
-./fractol julia -0.4 0.6
-./fractol julia 0.285 0.01
-./fractol julia -0.70176 -0.3842
-./fractol julia -0.835 -0.2321
-./fractol julia -0.7269 0.1889
-./fractol julia 0.0 -0.8
-```
-
-### Burning Ship
-
-A sharper, more dramatic fractal that uses absolute values before squaring. It creates aggressive flame-like forms and feels very different from Mandelbrot.
-
-### Tricorn
-
-A Mandelbrot-relative based on the complex conjugate. It has a colder symmetry and gives the project a strong bonus identity.
-
-## Suggested Exploration Routes
-
-### Route 1: Classic
-
-```bash
-./fractol mandelbrot
-```
-
-Start wide, zoom toward the boundary, increase iterations, and look for mini-Mandelbrots.
-
-### Route 2: Organic
-
-```bash
-./fractol burning_ship
-```
-
-Use slow zoom and color changes. This fractal becomes more interesting the deeper you go.
-
-### Route 3: Experimental
-
-```bash
-./fractol julia -0.7269 0.1889
-```
-
-Try several Julia constants back-to-back and compare how much the geometry changes.
-
-### Route 4: Ambient
-
-```bash
-./fractol tricorn
-```
-
-Then press `A` to let autoplay take over and turn the project into a self-moving demo.
-
 ## Under the Hood
 
-The project is split to keep the code easy to read and easier to defend:
+The code is split by responsibility so the project is easier to defend, maintain, and extend:
 
 - `main.c` handles startup and argument flow
-- `init.c` and `controls.c` manage view defaults and interaction state
-- `fractal_calc.c` contains the actual mathematical formulas
+- `init.c` and `controls.c` manage defaults and interaction state
+- `fractal_calc.c` contains the mathematical formulas
 - `render.c` maps pixels to the complex plane and paints the frame
 - `events.c` and `events_utils.c` handle keyboard, scroll, and zoom logic
 - `color.c` and `color_palettes.c` control the visual style
 - `parse.c` validates Julia parameters safely
 - `cleanup.c` centralizes shutdown behavior
+- `autoplay.c` adds a lightweight self-running demo mode
 
 ## Project Structure
 
@@ -185,6 +179,7 @@ Fractol/
 |-- fractol_help.c
 |-- fractol.h
 |-- Makefile
+|-- assets/
 `-- MLX42/
 ```
 
@@ -202,18 +197,18 @@ Fractol/
 
 I wanted this repository to feel:
 
-- clear to read
-- fast to build
+- easy to clone
+- easy to build
 - easy to demo
 - pleasant to explore
 - more alive than a bare school hand-in
 
 ## Technical Notes
 
-- The project currently uses `MLX42`.
-- Fractal math and navigation logic are separated from the graphics backend.
-- Build artifacts are ignored through `.gitignore`.
-- The source is organized in small files to keep the project easier to maintain and explain.
+- The project currently uses `MLX42`
+- Fractal math and navigation logic are separated from the graphics backend
+- Build artifacts are ignored through `.gitignore`
+- The source is organized in small files to keep the code readable and easier to explain
 
 ## Author
 

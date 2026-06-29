@@ -1,0 +1,71 @@
+<svg width="1280" height="560" viewBox="0 0 1280 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="90" y1="50" x2="1180" y2="530" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#09121F"/>
+      <stop offset="1" stop-color="#0E1F38"/>
+    </linearGradient>
+    <linearGradient id="line" x1="118" y1="0" x2="118" y2="72" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7FF0FF"/>
+      <stop offset="1" stop-color="#7C94FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="560" rx="28" fill="url(#bg)"/>
+
+  <text x="84" y="88" fill="#F1F7FF" font-family="'Segoe UI', Arial, sans-serif" font-size="42" font-weight="700">How Fract'ol turns math into an image</text>
+  <text x="84" y="126" fill="#AFC5DF" font-family="'Segoe UI', Arial, sans-serif" font-size="20">The rendering pipeline is simple, but the visual result becomes incredibly rich.</text>
+
+  <g transform="translate(84 188)">
+    <rect x="0" y="0" width="212" height="210" rx="24" fill="#0C182A" stroke="#A2CBFF" stroke-opacity="0.18"/>
+    <rect x="26" y="28" width="160" height="112" rx="18" fill="#132945"/>
+    <path d="M46 60H166" stroke="#7FF0FF" stroke-width="2" stroke-dasharray="5 7"/>
+    <path d="M106 40V132" stroke="#7FF0FF" stroke-width="2" stroke-dasharray="5 7"/>
+    <circle cx="128" cy="66" r="7" fill="#FF8FD6"/>
+    <text x="27" y="168" fill="#F3F8FF" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="600">1. Pick a pixel</text>
+    <text x="27" y="196" fill="#B8C9DE" font-family="'Segoe UI', Arial, sans-serif" font-size="17">Every screen coordinate becomes</text>
+    <text x="27" y="219" fill="#B8C9DE" font-family="'Segoe UI', Arial, sans-serif" font-size="17">a candidate point to evaluate.</text>
+  </g>
+
+  <g transform="translate(334 252)">
+    <path d="M0 0H96" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M76 -18L108 0L76 18" stroke="#7C94FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g transform="translate(454 188)">
+    <rect x="0" y="0" width="212" height="210" rx="24" fill="#0C182A" stroke="#A2CBFF" stroke-opacity="0.18"/>
+    <circle cx="106" cy="84" r="52" stroke="#7FF0FF" stroke-width="3"/>
+    <path d="M80 96C94 86 102 74 103 59C118 71 127 84 131 102C118 102 102 104 80 96Z" fill="#FFB468" opacity="0.9"/>
+    <text x="27" y="168" fill="#F3F8FF" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="600">2. Map to C</text>
+    <text x="27" y="196" fill="#B8C9DE" font-family="'Segoe UI', Arial, sans-serif" font-size="17">The pixel is translated into a</text>
+    <text x="27" y="219" fill="#B8C9DE" font-family="'Segoe UI', Arial, sans-serif" font-size="17">point in the complex plane.</text>
+  </g>
+
+  <g transform="translate(704 252)">
+    <path d="M0 0H96" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M76 -18L108 0L76 18" stroke="#7C94FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g transform="translate(824 188)">
+    <rect x="0" y="0" width="212" height="210" rx="24" fill="#0C182A" stroke="#A2CBFF" stroke-opacity="0.18"/>
+    <path d="M36 110C66 38 148 44 172 84C197 126 163 165 113 165C73 165 49 145 36 110Z" stroke="#FF8FD6" stroke-width="3.5"/>
+    <text x="27" y="168" fill="#F3F8FF" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="600">3. Iterate</text>
+    <text x="27" y="196" fill="#B8C9DE" font-family="'Segoe UI', Arial, sans-serif" font-size="17">Apply the fractal formula until</text>
+    <text x="27" y="219" fill="#B8C9DE" font-family="'Segoe UI', Arial, sans-serif" font-size="17">the value escapes or stays bounded.</text>
+  </g>
+
+  <g transform="translate(1074 252)">
+    <path d="M0 0H62" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M42 -18L74 0L42 18" stroke="#7C94FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g transform="translate(1140 156)">
+    <rect x="0" y="32" width="90" height="210" rx="24" fill="#0C182A" stroke="#A2CBFF" stroke-opacity="0.18"/>
+    <rect x="25" y="58" width="40" height="30" rx="12" fill="#7FF0FF"/>
+    <rect x="25" y="96" width="40" height="30" rx="12" fill="#7C94FF"/>
+    <rect x="25" y="134" width="40" height="30" rx="12" fill="#FF8FD6"/>
+    <rect x="25" y="172" width="40" height="30" rx="12" fill="#FFB468"/>
+    <text x="16" y="278" fill="#F3F8FF" font-family="'Segoe UI', Arial, sans-serif" font-size="22" font-weight="600">4. Color</text>
+    <text x="16" y="304" fill="#B8C9DE" font-family="'Segoe UI', Arial, sans-serif" font-size="16">Escape speed</text>
+    <text x="16" y="326" fill="#B8C9DE" font-family="'Segoe UI', Arial, sans-serif" font-size="16">becomes style.</text>
+  </g>
+</svg>
