@@ -1,0 +1,14 @@
+# Build outputs
+fractol
+*.o
+
+# Local build directories
+MLX42/build/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+
+# Codex/local metadata
+.agents/
+.codex/
