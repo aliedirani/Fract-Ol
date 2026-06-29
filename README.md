@@ -2,35 +2,51 @@
 
 An interactive fractal explorer written in C for the 42 curriculum.
 
-Fract'ol turns complex-number math into a real-time visual playground. You can launch different fractal families, zoom directly toward the mouse cursor, shift the viewport, cycle through palettes, and explore how tiny numerical changes create wildly different patterns.
+This project is about turning abstract math into something you can drive with your hands. Fract'ol lets you move through fractal space in real time, zoom straight toward the mouse cursor, switch palettes, test different Julia constants, and watch tiny numeric changes explode into completely different shapes.
 
-## Why This Project Is Interesting
+It is both a graphics project and a curiosity project: part rendering engine, part mathematical playground.
 
-- It mixes math, graphics, and event-driven programming in one compact project.
-- It makes the Mandelbrot and Julia worlds feel interactive instead of theoretical.
-- It shows clean separation between rendering, controls, parsing, and fractal formulas.
-- It includes bonus-style exploration features without losing the core project focus.
+## At a Glance
 
-## Highlights
-
-- Mandelbrot set
-- Julia set with custom parameters
-- Burning Ship fractal
-- Tricorn fractal
+- 4 fractal types: Mandelbrot, Julia, Burning Ship, Tricorn
 - Cursor-centered zoom
 - Arrow-key panning
 - Multiple color palettes
-- Iteration depth control
-- Autoplay demo mode
+- Iteration depth controls
+- Autoplay mode for ambient exploration
+- Clean source split by responsibility
 
-## Quick Start
+## What Makes This Version Fun
+
+- You are not locked into one static render. The project is built for exploration.
+- Julia values are easy to try, which makes the project feel different every time you run it.
+- Burning Ship and Tricorn give the repo more personality than a mandatory-only submission.
+- The controls are simple enough to demo quickly, but rich enough to keep exploring.
+
+## First Minute Demo
+
+If someone opens the repo and wants to feel the project immediately, this is the fastest route:
+
+```bash
+make
+./fractol mandelbrot
+```
+
+Then try:
+
+1. Zoom into the edge of the Mandelbrot set with the mouse wheel.
+2. Pan with the arrow keys.
+3. Press `C` a few times to shift the mood of the image.
+4. Press `+` to increase detail.
+5. Launch a Julia set and compare how different it feels from Mandelbrot.
+
+## Build
 
 ### macOS
 
 ```bash
 brew install cmake glfw
 make
-./fractol mandelbrot
 ```
 
 ### Linux
@@ -38,10 +54,9 @@ make
 ```bash
 sudo apt-get install cmake libglfw3-dev libxcursor-dev libxinerama-dev libxi-dev
 make
-./fractol mandelbrot
 ```
 
-`MLX42` is already bundled in this repository, so there is no extra graphics-library clone step.
+`MLX42` is bundled inside this repository, so there is no extra graphics-library clone step.
 
 ## Run
 
@@ -72,11 +87,17 @@ If invalid arguments are provided, the program prints usage instructions and exi
 
 ### Mandelbrot
 
-The classic set where each point is tested through repeated iteration of `z = z^2 + c`. This implementation also includes a cardioid and period-2 bulb shortcut to avoid wasting time on points known to stay bounded.
+The classic escape-time fractal. Each pixel is mapped to the complex plane, then tested through repeated iteration of:
+
+```text
+z = z^2 + c
+```
+
+This implementation also includes a cardioid and period-2 bulb shortcut to skip work on points that are known to remain bounded.
 
 ### Julia
 
-The Julia set fixes the constant and lets the starting point vary. Small changes to the chosen constant create dramatically different structures.
+Julia sets fix the constant and let the starting point vary. That makes them perfect for experimentation: small parameter changes can produce entirely different structures.
 
 Suggested values:
 
@@ -91,11 +112,58 @@ Suggested values:
 
 ### Burning Ship
 
-A sharp, flame-like fractal created by taking absolute values before squaring.
+A sharper, more dramatic fractal that uses absolute values before squaring. It creates aggressive flame-like forms and feels very different from Mandelbrot.
 
 ### Tricorn
 
-A Mandelbrot-relative that uses the complex conjugate and produces a very different symmetry.
+A Mandelbrot-relative based on the complex conjugate. It has a colder symmetry and gives the project a strong bonus identity.
+
+## Suggested Exploration Routes
+
+### Route 1: Classic
+
+```bash
+./fractol mandelbrot
+```
+
+Start wide, zoom toward the boundary, increase iterations, and look for mini-Mandelbrots.
+
+### Route 2: Organic
+
+```bash
+./fractol burning_ship
+```
+
+Use slow zoom and color changes. This fractal becomes more interesting the deeper you go.
+
+### Route 3: Experimental
+
+```bash
+./fractol julia -0.7269 0.1889
+```
+
+Try several Julia constants back-to-back and compare how much the geometry changes.
+
+### Route 4: Ambient
+
+```bash
+./fractol tricorn
+```
+
+Then press `A` to let autoplay take over and turn the project into a self-moving demo.
+
+## Under the Hood
+
+The project is split to keep the code easy to read and easier to defend:
+
+- `main.c` handles startup and argument flow
+- `init.c` and `controls.c` manage view defaults and interaction state
+- `fractal_calc.c` contains the actual mathematical formulas
+- `render.c` maps pixels to the complex plane and paints the frame
+- `events.c` and `events_utils.c` handle keyboard, scroll, and zoom logic
+- `color.c` and `color_palettes.c` control the visual style
+- `parse.c` validates Julia parameters safely
+- `cleanup.c` centralizes shutdown behavior
 
 ## Project Structure
 
@@ -130,21 +198,22 @@ Fractol/
 | `make fclean` | Remove object files, binary, and `MLX42/build` |
 | `make re` | Full rebuild |
 
+## What I Wanted From This Repo
+
+I wanted this repository to feel:
+
+- clear to read
+- fast to build
+- easy to demo
+- pleasant to explore
+- more alive than a bare school hand-in
+
 ## Technical Notes
 
 - The project currently uses `MLX42`.
 - Fractal math and navigation logic are separated from the graphics backend.
-- The project is organized in small source files to stay easier to read and easier to defend.
-- Build artifacts are ignored through `.gitignore` for a cleaner repository.
-
-## Repository Goals
-
-This repository aims to be:
-
-- easy to clone
-- easy to build
-- easy to evaluate
-- easy to read for another 42 student
+- Build artifacts are ignored through `.gitignore`.
+- The source is organized in small files to keep the project easier to maintain and explain.
 
 ## Author
 
